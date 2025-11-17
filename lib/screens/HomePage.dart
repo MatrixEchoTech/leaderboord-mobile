@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/components/Home/CarFeatures.dart';
-import 'package:flutter_application_2/components/Home/HeroSection.dart';
-import 'package:flutter_application_2/components/Home/Passion.dart';
+import 'package:flutter_application_2/widgets/home/car_features.dart';
+import 'package:flutter_application_2/widgets/home/hero_section.dart';
+import 'package:flutter_application_2/widgets/home/passion.dart';
 
 
 
