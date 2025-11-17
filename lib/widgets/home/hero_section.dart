@@ -165,7 +165,7 @@ class BackgroundContainer extends StatelessWidget {
                         ),
                         padding: WidgetStateProperty.all(
                           const EdgeInsets.symmetric(
-                            horizontal: 16,
+                            horizontal: 8,
                             vertical: 20,
                           ),
                         ),
