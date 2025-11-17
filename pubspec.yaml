@@ -39,7 +39,7 @@ flutter:
           style: italic
         - asset: assets/fonts/helvetica-light-587ebe5a59211.ttf
           weight: 300
-        - asset: assets/fonts/helvetica-compressed-587d14b6903a.otf
+        - asset: assets/fonts/helvetica-compressed-5871d14b6903a.otf
           weight: 600
         - asset: assets/fonts/helvetica-rounded-bold-5871d05ead8de.otf
           weight: 800
