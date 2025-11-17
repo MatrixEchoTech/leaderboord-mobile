@@ -6,17 +6,16 @@ class Passion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,  // background color
+      color: Colors.black,
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 40),
-      child: const Center(
-        child: Text(
-          "Accelerate Your Passion",
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
+      child: const Text(
+        "Accelerate Your Passion.",
+        style: TextStyle(
+          fontFamily: "Helvetica",
+          fontWeight: FontWeight.w400,
+          fontSize: 30,
+          color: Colors.white,
         ),
       ),
     );

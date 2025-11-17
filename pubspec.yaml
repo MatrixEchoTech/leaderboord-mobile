@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
   carousel_slider: ^5.1.1
   curved_navigation_bar: ^1.0.6
-  google_fonts: ^6.2.1 
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:
@@ -20,5 +20,26 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
   assets:
-    - assets/images/ 
+    - assets/images/
+
+  fonts:
+    - family: Helvetica
+      fonts:
+        - asset: assets/fonts/Helvetica.ttf
+          weight: 400
+        - asset: assets/fonts/Helvetica-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Helvetica-BoldOblique.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Helvetica-Oblique.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/helvetica-light-587ebe5a59211.ttf
+          weight: 300
+        - asset: assets/fonts/helvetica-compressed-587d14b6903a.otf
+          weight: 600
+        - asset: assets/fonts/helvetica-rounded-bold-5871d05ead8de.otf
+          weight: 800
