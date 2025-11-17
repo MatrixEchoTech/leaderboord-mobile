@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/widgets/home/car_features.dart';
 import 'package:flutter_application_2/widgets/home/explore_leaderboord.dart';
+import 'package:flutter_application_2/widgets/home/footer.dart';
+
 import 'package:flutter_application_2/widgets/home/hero_section.dart';
 import 'package:flutter_application_2/widgets/home/join_community.dart';
 
@@ -11,18 +13,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-      appBar: AppBar(
-        foregroundColor: Colors.white,
-        backgroundColor: Colors.black,
-      ),
+      extendBodyBehindAppBar: true,
       body: ListView(
         children: [
           const BackgroundContainer(),
           const CarFeatures(),
           const PassionSection(),
           CommunitySection(),
-          ExploreLeaderboard()
+          ExploreLeaderboard(),
+   Footer()
         ],
       ),
     );

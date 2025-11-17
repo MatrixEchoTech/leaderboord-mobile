@@ -102,7 +102,11 @@ class _PassionSectionState extends State<PassionSection> {
 
         text:
             "Join the excitement of the Car Customization Showdown, where enthusiasts showcase their unique modifications and compete for the title of best car. From sleek designs to powerful performance upgrades, this contest celebrates creativity and engineering prowess.",
-        lines: const ["Discover more", "Car Modifications", "Latest Trends "],
+        lines: const [
+          "Discover more about",
+          "Car Modifications",
+          "The Latest Trends ",
+        ],
       );
     }
 
@@ -114,7 +118,7 @@ class _PassionSectionState extends State<PassionSection> {
             "Experience the thrill of the Nitrocross Championship, where top drivers push their custom-built machines to the limit on challenging tracks. Witness high-speed races, daring maneuvers, and fierce rivalries as teams compete for the ultimate victory. ",
         lines: const [
           "Learn more",
-          "Racing Enhancement",
+          "Racing Enhancements",
           "Performance Upgrades",
         ],
       );
@@ -179,7 +183,7 @@ class _PassionSectionState extends State<PassionSection> {
 
                     return Wrap(
                       spacing: 0,
-                      runSpacing: 10,
+
                       children: lines.map((text) {
                         return SizedBox(
                           width: itemWidth, // 1/3 width
@@ -191,8 +195,6 @@ class _PassionSectionState extends State<PassionSection> {
                               fontFamily: "Helvetica",
                             ),
                             textAlign: TextAlign.left,
-                            softWrap: true,
-                            overflow: TextOverflow.visible,
                           ),
                         );
                       }).toList(),
@@ -207,16 +209,23 @@ class _PassionSectionState extends State<PassionSection> {
         const SizedBox(height: 20),
 
         Center(
-          child: Wrap(
-            alignment: WrapAlignment.center,
-            spacing: 20, // space between items horizontally
-            runSpacing: 15, // space between rows
-            children: [
-              Image.asset("/images/jag.png", width: 100, height: 40),
-              Image.asset("/images/bug.png", width: 100, height: 40),
-              Image.asset("/images/ben.png", width: 100, height: 40),
-              Image.asset("/images/odi.png", width: 100, height: 40),
-            ],
+          child: Container(
+            padding: const EdgeInsets.symmetric( vertical: 16),
+            decoration: BoxDecoration(
+             color: const Color(0xFF261F264D), // Your background color
+              borderRadius: BorderRadius.circular(16), // Rounded corners
+            ),
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 20, // space between items horizontally
+              runSpacing: 15, // space between rows
+              children: [
+                Image.asset("/images/jag.png", width: 100, height: 40),
+                Image.asset("/images/bug.png", width: 100, height: 40),
+                Image.asset("/images/ben.png", width: 100, height: 40),
+                Image.asset("/images/odi.png", width: 100, height: 40),
+              ],
+            ),
           ),
         ),
       ],

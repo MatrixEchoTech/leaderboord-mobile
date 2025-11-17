@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/widgets/auth_screens/sign_in.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BackgroundContainer extends StatelessWidget {
@@ -120,15 +121,13 @@ class BackgroundContainer extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Flexible(
+                  SizedBox(
+                    width: 140, // fixed width for the first button
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 20,
-                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 20),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(55),
                         ),
@@ -144,42 +143,24 @@ class BackgroundContainer extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   const SizedBox(width: 16),
-
-                  Flexible(
+                  SizedBox(
+                    width: 140, // fixed width for the second button
                     child: ElevatedButton(
-                      onPressed: () {},
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.resolveWith<Color>(
-                          (states) {
-                            if (states.contains(WidgetState.hovered)) {
-                              return Colors.purple; // Hover background
-                            }
-                            return Colors.transparent; // Default background
-                          },
-                        ),
-                        foregroundColor: WidgetStateProperty.all(Colors.white),
-                        side: WidgetStateProperty.resolveWith<BorderSide>((
-                          states,
-                        ) {
-                          if (states.contains(WidgetState.hovered)) {
-                            return BorderSide.none; // Remove border on hover
-                          }
-                          return const BorderSide(
-                            color: Colors.white,
-                          ); // Default border
-                        }),
-                        padding: WidgetStateProperty.all(
-                          const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 20,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignIn(),
                           ),
-                        ),
-                        shape: WidgetStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(55),
-                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        side: const BorderSide(color: Colors.white),
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(55),
                         ),
                       ),
                       child: Text(

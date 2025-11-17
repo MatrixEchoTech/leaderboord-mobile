@@ -6,8 +6,6 @@ class ExploreLeaderboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
-
     return Container(
       width: double.infinity,
       height: 400, // Mobile-friendly height
@@ -39,7 +37,7 @@ class ExploreLeaderboard extends StatelessWidget {
               // Mobile Button
               SizedBox(
                 width: double.infinity, // full width
-                height: 50,
+               
                 child: ElevatedButton(
                   onPressed: () {
                     // Your navigation or action
@@ -48,11 +46,11 @@ class ExploreLeaderboard extends StatelessWidget {
                     backgroundColor: Colors.white,
                     foregroundColor: Colors.black,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(55),
+                      borderRadius: BorderRadius.circular(100),
                     ),
                     padding: const EdgeInsets.symmetric(
                       horizontal: 20,
-                      vertical: 16,
+                      vertical: 20,
                     ),
                   ),
                   child: Text(

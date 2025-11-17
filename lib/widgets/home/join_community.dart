@@ -121,7 +121,7 @@ class CommunitySection extends StatelessWidget {
 
   Widget _statsSmallImage(BuildContext context, String url) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final imageWidth = screenWidth > 300 ? 300.0 : screenWidth * 0.9;
+    final imageWidth = screenWidth > 300 ? 400.0 : screenWidth * 0.9;
 
     return SizedBox(
       width: imageWidth,

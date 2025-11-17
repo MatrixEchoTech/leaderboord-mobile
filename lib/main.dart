@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/screens/main_navigation.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Leaderboord ',
       theme: ThemeData(primaryColor: Colors.black, brightness: Brightness.dark),
       home: MainNavigation(),
+   
     );
   }
 }
