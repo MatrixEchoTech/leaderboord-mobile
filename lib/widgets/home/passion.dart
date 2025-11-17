@@ -21,65 +21,74 @@ class _PassionSectionState extends State<PassionSection> {
     return Container(
       width: double.infinity,
       color: Colors.black,
-      padding: const EdgeInsets.symmetric(vertical: 30, ),
+      padding: const EdgeInsets.symmetric(vertical: 40),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// TITLE
-          const Text(
-            "Accelerate your passion.",
-            style: TextStyle(
-              fontFamily: "Helvetica",
-              fontWeight: FontWeight.w400,
-              fontSize: 28,
-              color: Colors.white,
-            ),
-          ),
-
-          const SizedBox(height: 20),
-
-          /// TABS
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: buttons.map((label) {
-              final bool isSelected = selected == label;
-
-              return GestureDetector(
-                onTap: () => setState(() => selected = label),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 14,
-                  ),
-                  decoration: BoxDecoration(
-                    color: isSelected
-                        ? const Color(0xff111111)
-                        : Colors.transparent,
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(
-                      color: isSelected
-                          ? const Color(0xffA962FF)
-                          : Colors.transparent,
-                    ),
-                  ),
-                  child: Text(
-                    label,
-                    style: const TextStyle(
-                      fontFamily: "Helvetica",
-                      fontWeight: FontWeight.w400,
-                      fontSize: 13,
-                      color: Colors.white,
-                    ),
+          /// CENTERED TITLE + TABS
+          Center(
+            child: Column(
+              children: [
+                /// TITLE
+                const Text(
+                  "Accelerate your passion.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: "Helvetica",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 30,
+                    color: Colors.white,
+                    letterSpacing: 1,
                   ),
                 ),
-              );
-            }).toList(),
+
+                const SizedBox(height: 20),
+
+                /// TABS
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: buttons.map((label) {
+                    final bool isSelected = selected == label;
+
+                    return GestureDetector(
+                      onTap: () => setState(() => selected = label),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 14,
+                        ),
+                        decoration: BoxDecoration(
+                          color: isSelected
+                              ? const Color(0xff111111)
+                              : Colors.transparent,
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(
+                            color: isSelected
+                                ? const Color(0xffA962FF)
+                                : Colors.transparent,
+                          ),
+                        ),
+                        child: Text(
+                          label,
+                          style: const TextStyle(
+                            fontFamily: "Helvetica",
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
           ),
 
           const SizedBox(height: 25),
 
-          /// CONTENT AREA
           _buildSelectedContent(),
         ],
       ),
@@ -93,7 +102,7 @@ class _PassionSectionState extends State<PassionSection> {
 
         text:
             "Join the excitement of the Car Customization Showdown, where enthusiasts showcase their unique modifications and compete for the title of best car. From sleek designs to powerful performance upgrades, this contest celebrates creativity and engineering prowess.",
-        lines: const ["Discover more", "Car Modifications", "Latest Trends"],
+        lines: const ["Discover more", "Car Modifications", "Latest Trends "],
       );
     }
 
@@ -105,7 +114,7 @@ class _PassionSectionState extends State<PassionSection> {
             "Experience the thrill of the Nitrocross Championship, where top drivers push their custom-built machines to the limit on challenging tracks. Witness high-speed races, daring maneuvers, and fierce rivalries as teams compete for the ultimate victory. ",
         lines: const [
           "Learn more",
-          "Racing Enhancements",
+          "Racing Enhancement",
           "Performance Upgrades",
         ],
       );
@@ -126,7 +135,6 @@ class _PassionSectionState extends State<PassionSection> {
 
   Widget _buildSection({
     required String image,
-
     required String text,
     required List<String> lines,
   }) {
@@ -144,13 +152,12 @@ class _PassionSectionState extends State<PassionSection> {
 
         /// TEXT CONTAINER
         Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(color: const Color(0xff1A1A1A)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset("/images/newLogo.png", height: 30),
-
               const SizedBox(height: 12),
 
               Text(
@@ -164,21 +171,34 @@ class _PassionSectionState extends State<PassionSection> {
 
               const SizedBox(height: 20),
 
-              Wrap(
-                spacing: 16,
-                runSpacing: 10,
-                children: lines
-                    .map(
-                      (e) => Text(
-                        e,
-                        style: const TextStyle(
-                          color: Color(0xffA962FF),
-                          fontSize: 16,
-                          fontFamily: "Helvetica",
-                        ),
-                      ),
-                    )
-                    .toList(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 0),
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    double itemWidth = constraints.maxWidth / 3; // 3 columns
+
+                    return Wrap(
+                      spacing: 0,
+                      runSpacing: 10,
+                      children: lines.map((text) {
+                        return SizedBox(
+                          width: itemWidth, // 1/3 width
+                          child: Text(
+                            text,
+                            style: const TextStyle(
+                              color: Color(0xffA962FF),
+                              fontSize: 16,
+                              fontFamily: "Helvetica",
+                            ),
+                            textAlign: TextAlign.left,
+                            softWrap: true,
+                            overflow: TextOverflow.visible,
+                          ),
+                        );
+                      }).toList(),
+                    );
+                  },
+                ),
               ),
             ],
           ),
@@ -186,17 +206,16 @@ class _PassionSectionState extends State<PassionSection> {
 
         const SizedBox(height: 20),
 
-        /// BRAND LOGOS (SVG FIXED)
-        Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(color: const Color(0x66261F26)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+        Center(
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 20, // space between items horizontally
+            runSpacing: 15, // space between rows
             children: [
-              Image.asset("/images/jag.png", width: 50),
-              Image.asset("/images/bug.png", width: 50),
-              Image.asset("/images/ben.png", width: 50),
-              Image.asset("/images/odi.png", width: 50),
+              Image.asset("/images/jag.png", width: 100, height: 40),
+              Image.asset("/images/bug.png", width: 100, height: 40),
+              Image.asset("/images/ben.png", width: 100, height: 40),
+              Image.asset("/images/odi.png", width: 100, height: 40),
             ],
           ),
         ),

@@ -50,7 +50,7 @@ class BackgroundContainer extends StatelessWidget {
               Text(
                 "Create Your Garage",
                 style: GoogleFonts.manrope(
-                  fontSize: 26,
+                  fontSize: 30,
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
                   shadows: const [
@@ -69,7 +69,7 @@ class BackgroundContainer extends StatelessWidget {
               Text(
                 "Add Your Vehicles",
                 style: GoogleFonts.manrope(
-                  fontSize: 26,
+                  fontSize: 30,
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
                   shadows: const [
@@ -88,7 +88,7 @@ class BackgroundContainer extends StatelessWidget {
               Text(
                 "Compete & Win",
                 style: GoogleFonts.manrope(
-                  fontSize: 26,
+                  fontSize: 30,
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
                   shadows: const [
@@ -154,15 +154,22 @@ class BackgroundContainer extends StatelessWidget {
                         backgroundColor: WidgetStateProperty.resolveWith<Color>(
                           (states) {
                             if (states.contains(WidgetState.hovered)) {
-                              return Colors.purple;
+                              return Colors.purple; // Hover background
                             }
-                            return Colors.transparent;
+                            return Colors.transparent; // Default background
                           },
                         ),
                         foregroundColor: WidgetStateProperty.all(Colors.white),
-                        side: WidgetStateProperty.all(
-                          const BorderSide(color: Colors.white),
-                        ),
+                        side: WidgetStateProperty.resolveWith<BorderSide>((
+                          states,
+                        ) {
+                          if (states.contains(WidgetState.hovered)) {
+                            return BorderSide.none; // Remove border on hover
+                          }
+                          return const BorderSide(
+                            color: Colors.white,
+                          ); // Default border
+                        }),
                         padding: WidgetStateProperty.all(
                           const EdgeInsets.symmetric(
                             horizontal: 8,
@@ -179,7 +186,7 @@ class BackgroundContainer extends StatelessWidget {
                         "Create Your Garage",
                         textAlign: TextAlign.center,
                         style: GoogleFonts.manrope(
-                          fontSize: 14,
+                          fontSize: 12,
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                         ),
