@@ -61,7 +61,7 @@ class CurrentlyOwnedTabContent extends StatelessWidget {
       children: const [
         GarageCarCard(
           imagePath: "/images/car1.png",
-          carName: "porsche",
+          carName: "Nissan GT-R R35 – The Beast",
           horsepower: 23,
           zeroToSixty: "4",
           torque: 24,
@@ -69,7 +69,7 @@ class CurrentlyOwnedTabContent extends StatelessWidget {
         ),
         GarageCarCard(
           imagePath: "/images/car1.png",
-          carName: "porsche",
+          carName: "Nissan GT-R R35 – The Beast",
           horsepower: 23,
           zeroToSixty: "4",
           torque: 24,
@@ -90,7 +90,7 @@ class PreviouslyOwnedTabContent extends StatelessWidget {
       children: const [
         GarageCarCard(
           imagePath: "/images/car5.png",
-          carName: "mercedes benz slr mclaren 1",
+          carName: "Mercedes benz slr mclaren 1",
           horsepower: 23,
           zeroToSixty: "4",
           torque: 24,
@@ -98,7 +98,7 @@ class PreviouslyOwnedTabContent extends StatelessWidget {
         ),
         GarageCarCard(
           imagePath: "/images/car1.png",
-          carName: "porsche",
+          carName: "Porsche",
           horsepower: 23,
           zeroToSixty: "4",
           torque: 24,

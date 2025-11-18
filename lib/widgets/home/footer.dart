@@ -16,7 +16,7 @@ class Footer extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        vertical: 48,
+        vertical: 20,
         horizontal: isMobile ? 20 : 64,
       ),
 

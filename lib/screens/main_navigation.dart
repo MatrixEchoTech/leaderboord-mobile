@@ -40,7 +40,10 @@ class _MainNavigationState extends State<MainNavigation> {
         },
 
         onProfileTap: () {
-          _goToTab(4); // Switch to Profile tab inside _screens
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const ProfilePage()),
+          ); // Switch to Profile tab inside _screens
         },
       ),
       bottomNavigationBar: Container(

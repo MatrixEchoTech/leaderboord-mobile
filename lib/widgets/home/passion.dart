@@ -191,7 +191,7 @@ class _PassionSectionState extends State<PassionSection> {
                             text,
                             style: const TextStyle(
                               color: Color(0xffA962FF),
-                              fontSize: 16,
+                              fontSize: 15,
                               fontFamily: "Helvetica",
                             ),
                             textAlign: TextAlign.left,

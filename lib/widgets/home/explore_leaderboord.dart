@@ -8,7 +8,7 @@ class ExploreLeaderboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 400, // Mobile-friendly height
+      height: 300, // Mobile-friendly height
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/bg-3.jpg"),
@@ -40,7 +40,7 @@ class ExploreLeaderboard extends StatelessWidget {
                
                 child: ElevatedButton(
                   onPressed: () {
-                    // Your navigation or action
+                    
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,

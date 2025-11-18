@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/widgets/garage/detail_car.dart';
 
 class GarageCarCard extends StatelessWidget {
   final String imagePath;
@@ -30,7 +31,6 @@ class GarageCarCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Replace the image + car name section with this:
           Stack(
             children: [
               // Car Image
@@ -68,7 +68,7 @@ class GarageCarCard extends StatelessWidget {
                 ),
               ),
 
-              // Like, Comment, and Share row
+
               Positioned(
                 left: 16,
                 right: 16,
@@ -119,7 +119,6 @@ class GarageCarCard extends StatelessWidget {
                       ],
                     ),
 
-                    // Right side: Share
                     Image.asset(
                       'images/share-2.png',
                       width: 33,
@@ -142,7 +141,7 @@ class GarageCarCard extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(
                           8,
-                        ), // Rounded background
+                        ), 
                       ),
                       child: IconButton(
                         icon: const Icon(
@@ -187,7 +186,7 @@ class GarageCarCard extends StatelessWidget {
 
           // First row of stats
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
             child: Row(
               children: [
                 Expanded(
@@ -244,7 +243,23 @@ class GarageCarCard extends StatelessWidget {
                 // See Details Button
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // Navigate to CarDetailPage with some sample thumbnails
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => CarDetailPage(
+                            carName: carName,
+                            mainImage: imagePath,
+                            thumbnails: [
+                              imagePath, // main image
+                              'images/view1.png',
+                              'images/view2.png',
+                              'images/view3.png',
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF13131A),
                       side: const BorderSide(
