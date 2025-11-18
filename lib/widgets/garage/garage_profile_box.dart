@@ -75,14 +75,14 @@ class GarageProfileBox extends StatelessWidget {
                   TextSpan(
                     text: "Member since $memberYear  ",
                     style: GoogleFonts.inter(
-                      fontSize: 14,
+                      fontSize: 16,
                       color: const Color(0xFFBDBDBD),
                     ),
                   ),
                   TextSpan(
                     text: "$totalCars Cars Total",
                     style: GoogleFonts.inter(
-                      fontSize: 14,
+                      fontSize: 16,
                       color: const Color(0xFF4C98F1),
                       fontWeight: FontWeight.w600,
                     ),
@@ -101,7 +101,7 @@ class GarageProfileBox extends StatelessWidget {
                 ),
                 const SizedBox(width: 12),
 
-                // 🌍 MATERIAL ICON — Visibility
+            
                 Expanded(
                   child: _materialIconButton(
                     "Visibility (Public)",
@@ -116,11 +116,11 @@ class GarageProfileBox extends StatelessWidget {
             // ---------------- BUTTONS ROW 2 ----------------
             Row(
               children: [
-                // ✏️ MATERIAL ICON — Edit Profile
+            
                 Expanded(
                   child: _materialIconButton(
                     "Edit Profile",
-                    Icons.edit,
+                    Icons.edit_square,
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -197,7 +197,7 @@ class GarageProfileBox extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 16, color: Colors.black),
+            Icon(icon, size: 18, color: Colors.black),
             const SizedBox(width: 8),
             Flexible(
               child: Text(

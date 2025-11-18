@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_application_2/widgets/garage/currently_owned.dart';
 
 class GarageTabsPage extends StatelessWidget {
   const GarageTabsPage({super.key});
@@ -9,32 +9,42 @@ class GarageTabsPage extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: const Color(0xFF0F121A),
-
+      
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: Container(
-            color: const Color(0xFF171C29),
-            child: const TabBar(
+          
+            child: TabBar(
               indicatorColor: Colors.white,
               labelColor: Colors.white,
               unselectedLabelColor: Colors.grey,
               indicatorWeight: 2,
-
+               labelPadding: EdgeInsets.zero,
               tabs: [
                 Tab(
-                  icon: ImageIcon(AssetImage("/images/garage.png")),
-                  text: "Currently Owned (4)",
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      ImageIcon(AssetImage("images/garage.png")),
+                      SizedBox(width: 8),
+                      Text("Currently Owned (4)"),
+                    ],
+                  ),
                 ),
                 Tab(
-                  icon: ImageIcon(AssetImage("/images/subscription.png")),
-                  text: "Previously Owned (1)",
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      ImageIcon(AssetImage("images/subscription.png")),
+                      SizedBox(width: 8),
+                      Text("Previously Owned(1)"),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
         ),
-
         body: const TabBarView(
           children: [
             CurrentlyOwnedTabContent(),
@@ -51,11 +61,13 @@ class CurrentlyOwnedTabContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        "Currently Owned Cars List Here",
-        style: TextStyle(color: Colors.white),
-      ),
+    return ListView(
+      padding: const EdgeInsets.only(top: 35 , bottom: 35),
+      children: const [
+       GarageCarCard(imagePath: "/images/car1.png", carName: "porsche", horsepower: 23, zeroToSixty: "4", torque: 24, topSpeed: "23"),
+       GarageCarCard(imagePath: "/images/car1.png", carName: "porsche", horsepower: 23, zeroToSixty: "4", torque: 24, topSpeed: "23")
+    
+      ],
     );
   }
 }
@@ -65,7 +77,7 @@ class PreviouslyOwnedTabContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text(
         "Previously Owned Cars List Here",
         style: TextStyle(color: Colors.white),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/widgets/custom_appbar.dart';
 import 'package:flutter_application_2/widgets/garage/garage_car.dart';
-
 import 'package:flutter_application_2/widgets/garage/garage_profile_box.dart';
 import 'package:flutter_application_2/widgets/garage/my_garage_header.dart';
+
 
 class MyGarage extends StatelessWidget {
   const MyGarage({super.key});
@@ -10,7 +11,7 @@ class MyGarage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Image.asset("/images/newLogo.png", height: 30)),
+    
       body: ListView(
         children: const [
           MyGarageHeader(),
@@ -20,9 +21,13 @@ class MyGarage extends StatelessWidget {
             memberYear: "2025",
             totalCars: 5,
           ),
-       GarageTabsPage()
+          // Now the tabs can scroll as part of the page
+          SizedBox(
+            height: 500, // give some height for TabBarView
+            child: GarageTabsPage(),
+          ),
         ],
       ),
-    ); 
-  } 
-} 
+    );
+  }
+}
