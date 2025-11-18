@@ -13,6 +13,9 @@ class BackgroundContainer extends StatelessWidget {
     return Container(
       height: height ?? 400,
       width: width ?? double.infinity,
+       constraints: BoxConstraints(
+      minHeight: 50, // prevents shrinking
+    ),
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/background1.png"),
@@ -119,15 +122,13 @@ class BackgroundContainer extends StatelessWidget {
 
               // ---------------- Buttons Row ----------------
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    width: 140, // fixed width for the first button
+                  Expanded(
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 20),
                         backgroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 20),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(55),
                         ),
@@ -143,11 +144,11 @@ class BackgroundContainer extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 16),
-                  SizedBox(
-                    width: 140, // fixed width for the second button
+                  SizedBox(width: 16),
+
+                  Expanded(
                     child: ElevatedButton(
-                      onPressed: () {
+                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -156,9 +157,9 @@ class BackgroundContainer extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 20),
                         backgroundColor: Colors.transparent,
-                        side: const BorderSide(color: Colors.white),
-                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        side: BorderSide(color: Colors.white),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(55),
                         ),

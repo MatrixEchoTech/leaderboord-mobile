@@ -7,11 +7,14 @@ class ContactPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Contact Us"),
+        title: Image.asset(
+          "/images/newLogo.png",   // your image
+          height:30,
+        ),
       ),
       body: const Center(
         child: Text(
-          "Contact Page Content Here",
+          "My Garage",
           style: TextStyle(fontSize: 20),
         ),
       ),
