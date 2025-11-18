@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/widgets/custom_appbar.dart';
-import 'package:flutter_application_2/widgets/garage/garage_car.dart';
+
+import 'package:flutter_application_2/widgets/garage/garage_car_tabs.dart';
 import 'package:flutter_application_2/widgets/garage/garage_profile_box.dart';
 import 'package:flutter_application_2/widgets/garage/my_garage_header.dart';
 

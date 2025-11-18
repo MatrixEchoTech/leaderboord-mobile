@@ -38,11 +38,9 @@ class _MainNavigationState extends State<MainNavigation> {
         onLogoTap: () {
           _goToTab(0); // Switch to Home tab
         },
+
         onProfileTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const ProfilePage()),
-          );
+          _goToTab(4); // Switch to Profile tab inside _screens
         },
       ),
       bottomNavigationBar: Container(

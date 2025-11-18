@@ -9,17 +9,15 @@ class GarageTabsPage extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-      
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: Container(
-          
             child: TabBar(
               indicatorColor: Colors.white,
               labelColor: Colors.white,
               unselectedLabelColor: Colors.grey,
               indicatorWeight: 2,
-               labelPadding: EdgeInsets.zero,
+              labelPadding: EdgeInsets.zero,
               tabs: [
                 Tab(
                   child: Row(
@@ -46,10 +44,7 @@ class GarageTabsPage extends StatelessWidget {
           ),
         ),
         body: const TabBarView(
-          children: [
-            CurrentlyOwnedTabContent(),
-            PreviouslyOwnedTabContent(),
-          ],
+          children: [CurrentlyOwnedTabContent(), PreviouslyOwnedTabContent()],
         ),
       ),
     );
@@ -62,11 +57,24 @@ class CurrentlyOwnedTabContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.only(top: 35 , bottom: 35),
+      padding: const EdgeInsets.only(top: 35, bottom: 35),
       children: const [
-       GarageCarCard(imagePath: "/images/car1.png", carName: "porsche", horsepower: 23, zeroToSixty: "4", torque: 24, topSpeed: "23"),
-       GarageCarCard(imagePath: "/images/car1.png", carName: "porsche", horsepower: 23, zeroToSixty: "4", torque: 24, topSpeed: "23")
-    
+        GarageCarCard(
+          imagePath: "/images/car1.png",
+          carName: "porsche",
+          horsepower: 23,
+          zeroToSixty: "4",
+          torque: 24,
+          topSpeed: "23",
+        ),
+        GarageCarCard(
+          imagePath: "/images/car1.png",
+          carName: "porsche",
+          horsepower: 23,
+          zeroToSixty: "4",
+          torque: 24,
+          topSpeed: "23",
+        ),
       ],
     );
   }
@@ -77,11 +85,26 @@ class PreviouslyOwnedTabContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        "Previously Owned Cars List Here",
-        style: TextStyle(color: Colors.white),
-      ),
+    return ListView(
+      padding: const EdgeInsets.only(top: 35, bottom: 35),
+      children: const [
+        GarageCarCard(
+          imagePath: "/images/car5.png",
+          carName: "mercedes benz slr mclaren 1",
+          horsepower: 23,
+          zeroToSixty: "4",
+          torque: 24,
+          topSpeed: "23",
+        ),
+        GarageCarCard(
+          imagePath: "/images/car1.png",
+          carName: "porsche",
+          horsepower: 23,
+          zeroToSixty: "4",
+          torque: 24,
+          topSpeed: "23",
+        ),
+      ],
     );
   }
 }
