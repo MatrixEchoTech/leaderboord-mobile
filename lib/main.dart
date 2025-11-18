@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/screens/main_navigation.dart';
-
+import 'package:flutter_application_2/widgets/auth_screens/forget_password.dart';
+import 'package:flutter_application_2/widgets/auth_screens/sign_in.dart';
+import 'package:flutter_application_2/widgets/auth_screens/sign_up.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +18,12 @@ class MyApp extends StatelessWidget {
       title: 'Leaderboord ',
       theme: ThemeData(primaryColor: Colors.black, brightness: Brightness.dark),
       home: MainNavigation(),
-   
+      initialRoute: '',
+      routes: {
+        '/login': (context) => const SignIn(),
+        '/signup': (context) => const SignUp(),
+        '/forgot-password' :(context) => const ForgetPassword(),
+      },
     );
   }
 }
