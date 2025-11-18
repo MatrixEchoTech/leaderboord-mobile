@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/screens/main_navigation.dart';
 import 'package:flutter_application_2/widgets/auth_screens/forget_password.dart';
+import 'package:flutter_application_2/widgets/auth_screens/new_password.dart';
+import 'package:flutter_application_2/widgets/auth_screens/otp_code_verification.dart';
 import 'package:flutter_application_2/widgets/auth_screens/sign_in.dart';
 import 'package:flutter_application_2/widgets/auth_screens/sign_up.dart';
 
@@ -22,7 +24,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const SignIn(),
         '/signup': (context) => const SignUp(),
-        '/forgot-password' :(context) => const ForgetPassword(),
+        '/forgot-password': (context) => const ForgetPassword(),
+        '/new-password': (context) => const NewPassword(),
+        '/otp-code-verification':(context)=> const OtpCodeVerification()
       },
     );
   }

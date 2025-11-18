@@ -51,7 +51,7 @@ class _SignInState extends State<SignUp> {
           Center(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                padding: const EdgeInsets.only(top: 80, left: 14, right: 14),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -94,7 +94,7 @@ class _SignInState extends State<SignUp> {
                       ),
                     ),
                     const SizedBox(height: 30),
-                     Align(
+                    Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Full Name',
@@ -120,11 +120,9 @@ class _SignInState extends State<SignUp> {
                           vertical: 16,
                         ),
                         prefixIcon: Padding(
-                          padding: const EdgeInsets.all(
-                            0,
-                          ), // adjust icon padding
+                          padding: const EdgeInsets.all(0),
                           child: Image.asset(
-                            '/images/email.png', // your custom email icon
+                            '/images/user.png',
                             width: 17,
                             height: 17,
                           ),
@@ -139,7 +137,7 @@ class _SignInState extends State<SignUp> {
                     ),
 
                     const SizedBox(height: 20),
-                     Align(
+                    Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Username',
@@ -169,7 +167,7 @@ class _SignInState extends State<SignUp> {
                             0,
                           ), // adjust icon padding
                           child: Image.asset(
-                            '/images/email.png', // your custom email icon
+                            '/images/user.png',
                             width: 17,
                             height: 17,
                           ),
@@ -232,7 +230,52 @@ class _SignInState extends State<SignUp> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Password',
+                        'Mobile',
+                        style: GoogleFonts.poppins(
+                          color: Colors.white70,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+
+                    // Mobile TextField
+                    TextField(
+                      controller: emailController,
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
+                      decoration: InputDecoration(
+                        hintText: 'Enter your phone number',
+                        hintStyle: const TextStyle(
+                          color: Color(0xFF838383),
+                          fontSize: 16,
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 16,
+                        ),
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(
+                            0,
+                          ), // adjust icon padding
+                          child: Image.asset(
+                            '/images/mobile.png',
+                            width: 17,
+                            height: 17,
+                          ),
+                        ),
+                        enabledBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white70),
+                        ),
+                        focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'New Password',
                         style: GoogleFonts.poppins(
                           color: Colors.white70,
                           fontSize: 13,
@@ -313,7 +356,7 @@ class _SignInState extends State<SignUp> {
                             fontSize: 16,
                           ),
                           decoration: InputDecoration(
-                            hintText: 'Enter your Password',
+                            hintText: 'Confirm your Password',
                             hintStyle: const TextStyle(
                               color: Color(0xFF838383),
                               fontSize: 16,
@@ -358,12 +401,31 @@ class _SignInState extends State<SignUp> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: Colors.black,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
+                        style: ButtonStyle(
+                          backgroundColor:
+                              WidgetStateProperty.resolveWith<Color>((
+                                Set<WidgetState> states,
+                              ) {
+                                if (states.contains(WidgetState.hovered)) {
+                                  return const Color(0xFFCB3CFF); // hover bg
+                                }
+                                return const Color(0xFF9CA3AF); // default bg
+                              }),
+                          foregroundColor:
+                              WidgetStateProperty.resolveWith<Color>((
+                                Set<WidgetState> states,
+                              ) {
+                                if (states.contains(WidgetState.hovered)) {
+                                  return Colors.white; // hover text
+                                }
+                                return Colors.black; // default text
+                              }),
+                          shape:
+                              WidgetStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                              ),
                         ),
                         child: Text(
                           'Register',
@@ -374,6 +436,7 @@ class _SignInState extends State<SignUp> {
                         ),
                       ),
                     ),
+
                     const SizedBox(height: 20),
 
                     // Or continue with
