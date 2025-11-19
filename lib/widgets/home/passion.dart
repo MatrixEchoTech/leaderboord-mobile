@@ -212,7 +212,7 @@ class _PassionSectionState extends State<PassionSection> {
           child: Container(
             padding: const EdgeInsets.symmetric( vertical: 16),
             decoration: BoxDecoration(
-             color: const Color(0xFF261F264D), // Your background color
+             color: const Color(0xff261f264d), // Your background color
               borderRadius: BorderRadius.circular(16), // Rounded corners
             ),
             child: Wrap(

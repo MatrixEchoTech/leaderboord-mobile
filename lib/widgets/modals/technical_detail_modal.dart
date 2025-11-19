@@ -31,73 +31,87 @@ class TechnicalDetailsModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
+    /// ✔ On small screens → full width  
+    /// ✔ On large screens → center with max-width 600
+ final double modalWidth = width < 600 ? width : 600.0;
+
     return Scaffold(
       backgroundColor: const Color(0xFF171C29),
 
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            /// SPEC BOXES
-            Text(
-              "Full Technical Details",
-              style: GoogleFonts.inter(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            const SizedBox(height: 4),
-            for (final item in technicalSpecs) ...[
-              _buildDetailBox(item),
-              const SizedBox(height: 12),
-            ],
+      body: Center(
+        child: Container(
+          width: modalWidth,
+          padding: const EdgeInsets.all(16),
 
-            const SizedBox(height: 12),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                /// TITLE BEFORE GRID
+                Text(
+                  "Full Technical Details",
+                  style: GoogleFonts.inter(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
 
-            /// BACK BUTTON
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => Navigator.pop(context),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0A1330),
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 18),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(100),
-                    side: const BorderSide(
-                      color: Color(0xFF444444), // border #444444
-                      width: 1,
+                const SizedBox(height: 12),
+
+                /// SPEC BOXES
+                for (final item in technicalSpecs) ...[
+                  _buildDetailBox(item),
+                  const SizedBox(height: 12),
+                ],
+
+                const SizedBox(height: 8),
+
+                /// BACK BUTTON
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () => Navigator.pop(context),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF0A1330),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100),
+                        side: const BorderSide(
+                          color: Color(0xFF444444), // border #444444
+                          width: 1,
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Transform(
+                          alignment: Alignment.center,
+                          transform: Matrix4.identity()..scale(-1.0, 1.0),
+                          child: Image.asset(
+                            "images/arrow-right.png",
+                            width: 16,
+                            height: 16,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          "Back",
+                          style: GoogleFonts.inter(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-
-                  children: [
-                    Transform(
-                      alignment: Alignment.center,
-                      transform: Matrix4.identity()..scale(-1.0, 1.0),
-                      child: Image.asset(
-                        "images/arrow-right.png",
-                        width: 16,
-                        height: 16,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Text(
-                      "Back",
-                      style: GoogleFonts.inter(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -117,11 +131,9 @@ class TechnicalDetailsModal extends StatelessWidget {
           width: 1,
         ),
       ),
-
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          /// Left Title
           Expanded(
             child: Text(
               item.title,
@@ -132,8 +144,6 @@ class TechnicalDetailsModal extends StatelessWidget {
               ),
             ),
           ),
-
-          /// Right Value
           Text(
             item.value,
             style: GoogleFonts.inter(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/widgets/garage/car_specs.dart';
+import 'package:flutter_application_2/widgets/garage/comments_garage.dart';
 import 'package:flutter_application_2/widgets/modals/technical_detail_modal.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../custom_appbar.dart';
@@ -43,7 +44,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
         ).push(MaterialPageRoute(builder: (_) => const ProfilePage())),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -81,7 +82,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Image.asset(
-                              'images/refresh.png', // refresh icon
+                              'images/refresh.png',
                               width: 18,
                               height: 18,
                               color: Colors.white,
@@ -137,13 +138,14 @@ class _CarDetailPageState extends State<CarDetailPage> {
 
             const SizedBox(height: 20),
 
-            // Car Name
             Text(
               widget.carName,
               style: GoogleFonts.poppins(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
                 color: Colors.white,
+                height: 1.0,
+                letterSpacing: 0,
               ),
             ),
 
@@ -157,11 +159,10 @@ class _CarDetailPageState extends State<CarDetailPage> {
               ),
               child: Row(
                 children: [
-                  // Profile photo
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(25), // circular image
+                    borderRadius: BorderRadius.circular(25),
                     child: Image.asset(
-                      'images/user2.png', // replace with owner's profile photo path
+                      'images/user2.png',
                       width: 40,
                       height: 40,
                       fit: BoxFit.cover,
@@ -174,11 +175,13 @@ class _CarDetailPageState extends State<CarDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Fernand (Owner)", // Owner's name
+                        "Fernand (Owner)",
                         style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
+                          height: 1.5,
+                          letterSpacing: 0, // tracking: normal
                         ),
                       ),
                       const SizedBox(height: 2),
@@ -199,8 +202,8 @@ class _CarDetailPageState extends State<CarDetailPage> {
 
                   Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
+                      horizontal: 16,
+                      vertical: 4,
                     ),
                     decoration: BoxDecoration(
                       color: const Color(
@@ -275,7 +278,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
                     padding: const EdgeInsets.all(8),
                     margin: const EdgeInsets.only(left: 8),
                     decoration: BoxDecoration(
-                      color: const Color(0x33293047), // #29304733
+                      color: Color(0x33293047), // #29304733
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Row(
@@ -357,14 +360,93 @@ class _CarDetailPageState extends State<CarDetailPage> {
                           ),
                         ],
                       ),
-                      
                     ),
                   ),
                 ],
               ),
             ),
-             const SizedBox(height: 8),
+            const SizedBox(height: 8),
             const CarSpecGrid(),
+
+            const SizedBox(height: 20),
+            Text(
+              "Price",
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: Color(0xff999999),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              "\$111.00",
+              style: GoogleFonts.poppins(
+                fontSize: 32,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+
+              children: [
+                /// Make a Change Button
+                ElevatedButton(
+                  onPressed: () {
+                    // TODO: Handle "Make a Change"
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF0A1330),
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                      side: const BorderSide(
+                        color: Color(0xFF444444), // border color
+                        width: 1,
+                      ),
+                    ),
+                  ),
+                  child: Text(
+                    "Make a Change",
+                    style: GoogleFonts.inter(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 12),
+
+                /// Add Event Button
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                      side: const BorderSide(
+                        color: Color(0xFF444444), // border color
+                        width: 1,
+                      ),
+                    ),
+                  ),
+                  child: Text(
+                    "Add Event",
+                    style: GoogleFonts.inter(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xFF0A1330),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+             const SizedBox(height: 20),
+             const CommentsGarage()
           ],
         ),
       ),
