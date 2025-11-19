@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/widgets/garage/car_specs.dart';
 import 'package:flutter_application_2/widgets/modals/technical_detail_modal.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../custom_appbar.dart';
@@ -47,7 +48,6 @@ class _CarDetailPageState extends State<CarDetailPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Main Car Image with border
-         
             Container(
               decoration: BoxDecoration(
                 border: Border.all(color: const Color(0xFF444444), width: 1),
@@ -322,43 +322,49 @@ class _CarDetailPageState extends State<CarDetailPage> {
                   // Right side
                   Flexible(
                     child: GestureDetector(
-    onTap: () {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => const TechnicalDetailsModal(),
-          fullscreenDialog: true, // makes it appear as a modal
-        ),
-      );
-    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize
-                          .min, // ensures it takes only the space it needs
-                      children: [
-                        Flexible(
-                          child: Text(
-                            "See full technical details",
-                            style: GoogleFonts.inter(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white70,
-                            ),
-                            overflow:
-                                TextOverflow.ellipsis, // prevents overflow
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const TechnicalDetailsModal(),
+                            fullscreenDialog:
+                                true, // makes it appear as a modal
                           ),
-                        ),
-                        const SizedBox(width: 4),
-                        Image.asset(
-                          "images/arrow-right.png",
-                          width: 14,
-                          height: 14,
-                          fit: BoxFit.contain, // ensures full image is visible
-                        ),
-                      ],
+                        );
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize
+                            .min, // ensures it takes only the space it needs
+                        children: [
+                          Flexible(
+                            child: Text(
+                              "See full technical details",
+                              style: GoogleFonts.inter(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white70,
+                              ),
+                              overflow:
+                                  TextOverflow.ellipsis, // prevents overflow
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          Image.asset(
+                            "images/arrow-right.png",
+                            width: 14,
+                            height: 14,
+                            fit:
+                                BoxFit.contain, // ensures full image is visible
+                          ),
+                        ],
+                      ),
+                      
                     ),
-                  ),),
+                  ),
                 ],
               ),
             ),
+             const SizedBox(height: 8),
+            const CarSpecGrid(),
           ],
         ),
       ),

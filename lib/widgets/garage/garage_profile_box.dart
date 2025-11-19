@@ -180,8 +180,8 @@ class GarageProfileBox extends StatelessWidget {
     );
   }
 
-  // ---------------- BUTTON WITH MATERIAL ICON (new for web + edit) ----------------
-  Widget _materialIconButton(String label, IconData icon, {bool isBlue = false}) {
+  // ---------------- BUTTON WITH MATERIAL ICON 
+  Widget _materialIconButton(String label, IconData icon) {
     return SizedBox(
       height: 36,
       child: ElevatedButton(
