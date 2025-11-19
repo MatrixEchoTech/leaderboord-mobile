@@ -13,11 +13,7 @@ class _CommentsGarageState extends State<CommentsGarage> {
 
   /// List of comments
   List<Map<String, String>> comments = [
-    {
-      "name": "Ethan Parker",
-      "time": "2d 4h ago",
-      "comment": "test comment",
-    }
+    {"name": "Ethan Parker", "time": "2d 4h ago", "comment": "test comment"},
   ];
 
   /// Function to add new comment
@@ -26,16 +22,13 @@ class _CommentsGarageState extends State<CommentsGarage> {
     if (text.isEmpty) return;
 
     setState(() {
-      comments.insert(0, {
-        "name": "You",
-        "time": "Just now",
-        "comment": text,
-      });
+      comments.insert(0, {"name": "You", "time": "Just now", "comment": text});
     });
 
     _controller.clear();
   }
 
+  @override
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -53,13 +46,26 @@ class _CommentsGarageState extends State<CommentsGarage> {
 
         const SizedBox(height: 12),
 
-        /// --- All Comments Dynamically ---
-        for (var c in comments) ...[
-          _buildCommentCard(c),
-          const SizedBox(height: 14),
-        ],
+        /// --- Check if there are comments otherwise show no  comments found ---
+        if (comments.isEmpty)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Text(
+              "No comments found",
+              style: GoogleFonts.inter(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
 
-        const SizedBox(height: 10),
+          )
+        else
+          /// --- All Comments Dynamically ---
+          for (var c in comments) ...[
+            _buildCommentCard(c),
+            const SizedBox(height: 14),
+          ],
 
         /// Comments Count
         Text(
@@ -91,12 +97,10 @@ class _CommentsGarageState extends State<CommentsGarage> {
             hintStyle: GoogleFonts.inter(color: Colors.white54, fontSize: 14),
             filled: true,
             fillColor: const Color(0xFF171C29),
-
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 14,
             ),
-
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: const BorderSide(color: Color(0xFF343B4F), width: 1),
@@ -137,89 +141,88 @@ class _CommentsGarageState extends State<CommentsGarage> {
   }
 
   /// --- UI for individual comment ---
- Widget _buildCommentCard(Map<String, String> data) {
-  bool isUser = data["name"] == "You"; // check if it's your comment
+  Widget _buildCommentCard(Map<String, String> data) {
+    bool isUser = data["name"] == "You"; // check if it's your comment
 
-  return Container(
-    padding: const EdgeInsets.all(12),
-    decoration: BoxDecoration(
-      color: const Color(0xFF171C29),
-      borderRadius: BorderRadius.circular(12),
-      border: Border.all(color: const Color(0xFF444444)),
-    ),
-    child: Row(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(25),
-          child: Image.asset(
-            'images/user2.png',
-            width: 40,
-            height: 40,
-            fit: BoxFit.cover,
-          ),
-        ),
-
-        const SizedBox(width: 10),
-
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                data["name"]!,
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Text(
-                data["time"]!,
-                style: GoogleFonts.poppins(
-                  color: const Color(0x66FFFFFF),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 6),
-              Text(
-                data["comment"]!,
-                style: GoogleFonts.lato(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          ),
-        ),
-
-        const SizedBox(width: 10),
-
-        /// --- DELETE if your comment, REPORT otherwise ---
-        GestureDetector(
-          onTap: () {
-            if (isUser) {
-              // delete the comment
-              setState(() {
-                comments.remove(data);
-              });
-            } else {
-              // future: report function
-            }
-          },
-          child: Text(
-            isUser ? "Delete" : "Report",
-            style: GoogleFonts.lato(
-              color: isUser ?  Colors.white : const Color(0xFFA3A3A3),
-              fontSize: 12,
-              fontWeight: FontWeight.w700,
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: const Color(0xFF171C29),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFF444444)),
+      ),
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(25),
+            child: Image.asset(
+              'images/user2.png',
+              width: 40,
+              height: 40,
+              fit: BoxFit.cover,
             ),
           ),
-        ),
-      ],
-    ),
-  );
-}
 
+          const SizedBox(width: 10),
+
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  data["name"]!,
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Text(
+                  data["time"]!,
+                  style: GoogleFonts.lato(
+                    color: const Color(0xFF878787),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  data["comment"]!,
+                  style: GoogleFonts.lato(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(width: 10),
+
+          /// --- DELETE if your comment, REPORT otherwise ---
+          GestureDetector(
+            onTap: () {
+              if (isUser) {
+                // delete the comment
+                setState(() {
+                  comments.remove(data);
+                });
+              } else {
+                // future: report function
+              }
+            },
+            child: Text(
+              isUser ? "Delete" : "Report",
+              style: GoogleFonts.lato(
+                color: isUser ? Colors.white : const Color(0xFFA3A3A3),
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

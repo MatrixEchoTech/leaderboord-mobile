@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/widgets/garage/car_journey.dart';
 import 'package:flutter_application_2/widgets/garage/car_specs.dart';
 import 'package:flutter_application_2/widgets/garage/comments_garage.dart';
 import 'package:flutter_application_2/widgets/modals/technical_detail_modal.dart';
@@ -44,7 +45,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
         ).push(MaterialPageRoute(builder: (_) => const ProfilePage())),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -445,8 +446,10 @@ class _CarDetailPageState extends State<CarDetailPage> {
                 ),
               ],
             ),
-             const SizedBox(height: 20),
-             const CommentsGarage()
+             const SizedBox(height: 25),
+             const CommentsGarage(),
+               const SizedBox(height: 35),
+                CarJourney(),
           ],
         ),
       ),
