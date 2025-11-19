@@ -131,7 +131,7 @@ class _PassionSectionState extends State<PassionSection> {
           "Experience the thrill of the Nitrocross Championship—high-speed races, daring maneuvers, and fierce rivalries for ultimate victory.",
       lines: const [
         "Learn More About",
-        "Free Entry Fees",
+        "Free Entry ",
         "the Hottest Designs",
       ],
     );

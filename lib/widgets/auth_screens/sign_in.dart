@@ -202,7 +202,7 @@ class _SignInState extends State<SignIn> {
                     const SizedBox(height: 12),
 
                     // Remember me and Forgot Password
-                    Row(
+                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
@@ -215,7 +215,7 @@ class _SignInState extends State<SignIn> {
                                 });
                               },
                               activeColor:
-                                  Colors.white, // box color when checked
+                                   Colors.white, // box color when checked
                               checkColor: Colors.black, // tick color
                             ),
                             Text(

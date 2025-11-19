@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/widgets/modals/add_event_modal.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CarJourney extends StatelessWidget {
@@ -96,27 +97,44 @@ class CarJourney extends StatelessWidget {
           const SizedBox(width: 12),
 
           // Add New Event button
-          ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: 70, minHeight: 70),
-            child: Container(
-              width: 80,
-              height: 80,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                "Add\nNew\nEvent",
-                textAlign: TextAlign.center,
-                style: GoogleFonts.inter(
-                  fontSize: 14,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => AddEventModal(
+                    onSubmit: () {
+                      Navigator.of(
+                        context,
+                      ).pop(); // simply close modal on submit
+                    },
+                  ),
+                  fullscreenDialog: true,
+                ),
+              );
+            },
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minWidth: 70, minHeight: 70),
+              child: Container(
+                width: 80,
+                height: 80,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                  "Add\nNew\nEvent",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.inter(
+                    fontSize: 14,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ),
             ),
           ),
+
           const SizedBox(height: 20),
         ],
       ),

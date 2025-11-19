@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/widgets/garage/car_journey.dart';
 import 'package:flutter_application_2/widgets/garage/car_specs.dart';
 import 'package:flutter_application_2/widgets/garage/comments_garage.dart';
+import 'package:flutter_application_2/widgets/modals/add_event_modal.dart';
 import 'package:flutter_application_2/widgets/modals/make_change_modal.dart';
 import 'package:flutter_application_2/widgets/modals/technical_detail_modal.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -400,13 +401,10 @@ class _CarDetailPageState extends State<CarDetailPage> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => MakeChangeModal(
-                          submitting: false,
-                          onSubmit: (updateType, newData, date, description) {
-                            print('Update Type: $updateType');
-                            print('New Data: $newData');
-                            print('Date: $date');
-                            print('Description: $description');
-                            Navigator.of(context).pop();
+                          onSubmit: () {
+                            Navigator.of(
+                              context,
+                            ).pop(); // simply close modal on submit
                           },
                         ),
                         fullscreenDialog: true,
@@ -438,7 +436,20 @@ class _CarDetailPageState extends State<CarDetailPage> {
 
                 /// Add Event Button
                 ElevatedButton(
-                  onPressed: () {},
+                 onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => AddEventModal(
+                          onSubmit: () {
+                            Navigator.of(
+                              context,
+                            ).pop(); // simply close modal on submit
+                          },
+                        ),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 20),
