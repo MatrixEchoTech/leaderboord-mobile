@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/widgets/garage/car_journey.dart';
 import 'package:flutter_application_2/widgets/garage/car_specs.dart';
 import 'package:flutter_application_2/widgets/garage/comments_garage.dart';
+import 'package:flutter_application_2/widgets/modals/make_change_modal.dart';
 import 'package:flutter_application_2/widgets/modals/technical_detail_modal.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../custom_appbar.dart';
@@ -396,7 +397,21 @@ class _CarDetailPageState extends State<CarDetailPage> {
                 /// Make a Change Button
                 ElevatedButton(
                   onPressed: () {
-                    // TODO: Handle "Make a Change"
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => MakeChangeModal(
+                          submitting: false,
+                          onSubmit: (updateType, newData, date, description) {
+                            print('Update Type: $updateType');
+                            print('New Data: $newData');
+                            print('Date: $date');
+                            print('Description: $description');
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        fullscreenDialog: true,
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF0A1330),
@@ -404,7 +419,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100),
                       side: const BorderSide(
-                        color: Color(0xFF444444), // border color
+                        color: Color(0xFF444444),
                         width: 1,
                       ),
                     ),
@@ -446,10 +461,10 @@ class _CarDetailPageState extends State<CarDetailPage> {
                 ),
               ],
             ),
-             const SizedBox(height: 25),
-             const CommentsGarage(),
-               const SizedBox(height: 35),
-                CarJourney(),
+            const SizedBox(height: 25),
+            const CommentsGarage(),
+            const SizedBox(height: 35),
+            CarJourney(),
           ],
         ),
       ),
