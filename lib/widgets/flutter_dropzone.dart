@@ -51,7 +51,7 @@ class _CrossPlatformDropzoneState extends State<CrossPlatformDropzone> {
   Future<void> pickFileWeb() async {
     if (!kIsWeb) return;
     final ev = await controller.pickFiles(mime: ['image/*'], multiple: false);
-    if (ev.isEmpty) return;
+    if (ev == null || ev.isEmpty) return; // safety check
 
     final bytes = await controller.getFileData(ev.first);
     final name = await controller.getFilename(ev.first);
@@ -87,19 +87,21 @@ class _CrossPlatformDropzoneState extends State<CrossPlatformDropzone> {
         ),
         child: Stack(
           children: [
+            // Web dropzone layer
             if (kIsWeb)
               DropzoneView(
                 onCreated: (ctrl) => controller = ctrl,
                 onHover: () => setState(() => isHovered = true),
                 onLeave: () => setState(() => isHovered = false),
                 onDrop: (ev) async {
+                  if (ev == null) return;
                   setState(() => isHovered = false);
                   final bytes = await controller.getFileData(ev);
                   final name = await controller.getFilename(ev.first);
 
                   if (bytes.length > maxFileSize) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
+                      SnackBar(
                         content: Text('File exceeds 50MB limit'),
                         backgroundColor: Colors.red,
                       ),
@@ -116,7 +118,7 @@ class _CrossPlatformDropzoneState extends State<CrossPlatformDropzone> {
             // Dashed border overlay and content
             Center(
               child: DottedBorder(
-                color: Color(0xFF444444),
+                color: const Color(0xFF444444),
                 strokeWidth: 2,
                 dashPattern: [8, 4],
                 borderType: BorderType.RRect,
@@ -126,19 +128,58 @@ class _CrossPlatformDropzoneState extends State<CrossPlatformDropzone> {
                   height: double.infinity,
                   alignment: Alignment.center,
                   child: fileBytes != null
-                      ? Image.memory(fileBytes!, fit: BoxFit.cover)
+                      ? Center(
+                          child: Stack(
+                            children: [
+                              // Image preview with fixed size
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.memory(
+                                  fileBytes!,
+                                  width: 120, // image width
+                                  height: 120, // image height
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              // Cross button on top-right of the image
+                              Positioned(
+                                top: -8, // slightly outside image
+                                right: -8, // slightly outside image
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      fileBytes = null;
+                                      fileName = null;
+                                    });
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    
+                                    child: const Icon(
+                                      Icons.close,
+                                      color: Colors.white,
+                                      size: 25,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
                       : Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            // Image
+                            // Upload icon
                             Image.asset(
                               '/images/upload.png',
-                              width: 36, // adjust size as needed
+                              width: 36,
                               height: 30,
                               fit: BoxFit.contain,
                             ),
                             const SizedBox(height: 6),
-
                             // Texts
                             Text(
                               'Drag & drop',
