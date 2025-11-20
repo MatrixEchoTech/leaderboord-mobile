@@ -4,9 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 class MakeChangeModal extends StatefulWidget {
-  final VoidCallback? onSubmit; // just a callback, no form data
+  final VoidCallback? onSubmit;
 
-  MakeChangeModal({super.key, this.onSubmit}); // removed const for hot reload
+  const MakeChangeModal({super.key, this.onSubmit});
 
   @override
   State<MakeChangeModal> createState() => _MakeChangeModalState();
@@ -80,7 +80,7 @@ class _MakeChangeModalState extends State<MakeChangeModal> {
       ),
     );
 
-    Overlay.of(context)!.insert(_calendarOverlay!);
+    Overlay.of(context).insert(_calendarOverlay!);
   }
 
   @override
@@ -282,7 +282,6 @@ class _MakeChangeModalState extends State<MakeChangeModal> {
                     ),
                     const SizedBox(height: 6),
                     const CrossPlatformDropzone(),
-                  
                   ],
                 ),
                 const SizedBox(height: 10),

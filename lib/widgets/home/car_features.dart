@@ -21,7 +21,7 @@ class CarFeatures extends StatelessWidget {
 
           // Scrollable single column
           SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(14),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -93,7 +93,7 @@ Widget _buildCard({
 }) {
   return Container(
     width: double.infinity,
-    padding: const EdgeInsets.all(32),
+    padding: const EdgeInsets.fromLTRB(25, 15, 20,25),
     decoration: BoxDecoration(
       color: Colors.black.withOpacity(0.28),
       borderRadius: BorderRadius.circular(24),
@@ -167,7 +167,7 @@ Widget _buildCard({
   }) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(32),
+      padding: const EdgeInsets.fromLTRB(25, 15, 20,25),
       decoration: BoxDecoration(
       color: Colors.black.withOpacity(0.28),
         borderRadius: BorderRadius.circular(24),

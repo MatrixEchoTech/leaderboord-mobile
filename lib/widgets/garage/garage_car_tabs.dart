@@ -57,19 +57,19 @@ class CurrentlyOwnedTabContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.only(top: 35, bottom: 35),
-      children: const [
+      padding: const EdgeInsets.only(top: 15, bottom: 35),
+      children: [
         GarageCarCard(
-          imagePath: "/images/car1.png",
-          carName: "Nissan GT-R R35 – The Beast",
+          imagePath: "images/car1.png",
+          carName: "Nissan GT-R R35 – The Beast",
           horsepower: 23,
           zeroToSixty: "4",
           torque: 24,
           topSpeed: "23",
         ),
         GarageCarCard(
-          imagePath: "/images/car1.png",
-          carName: "Nissan GT-R R35 – The Beast",
+          imagePath: "images/car1.png",
+          carName: "Nissan GT-R R35 – The Beast",
           horsepower: 23,
           zeroToSixty: "4",
           torque: 24,
@@ -86,19 +86,19 @@ class PreviouslyOwnedTabContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.only(top: 35, bottom: 35),
-      children: const [
+      padding: const EdgeInsets.only(top: 15, bottom: 35),
+      children: [
         GarageCarCard(
-          imagePath: "/images/car5.png",
-          carName: "Mercedes benz slr mclaren 1",
+          imagePath: "images/car1.png",
+          carName: "Nissan GT-R R35 – The Beast",
           horsepower: 23,
           zeroToSixty: "4",
           torque: 24,
           topSpeed: "23",
         ),
         GarageCarCard(
-          imagePath: "/images/car1.png",
-          carName: "Porsche",
+          imagePath: "images/car1.png",
+          carName: "Nissan GT-R R35 – The Beast",
           horsepower: 23,
           zeroToSixty: "4",
           torque: 24,

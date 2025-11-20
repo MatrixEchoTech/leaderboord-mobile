@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/widgets/garage/detail_car.dart';
 
-class GarageCarCard extends StatelessWidget {
+class GarageCarCard extends StatefulWidget {
   final String imagePath;
   final String carName;
   final int horsepower;
@@ -20,6 +20,14 @@ class GarageCarCard extends StatelessWidget {
   });
 
   @override
+  State<GarageCarCard> createState() => _GarageCarCardState();
+}
+
+class _GarageCarCardState extends State<GarageCarCard> {
+  bool showShareMenu = false;
+  String? activeShareButton; // "top" or "bottom"
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -28,307 +36,359 @@ class GarageCarCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: const Color(0xFF444444), width: 1),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      child: Stack(
+        clipBehavior: Clip.none,
         children: [
-          Stack(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Car Image
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
-                ),
-                child: Image.asset(
-                  imagePath,
-                  height: 180,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-              ),
-
-              // Car Name overlay
-              Positioned(
-                left: 16,
-                right: 16,
-                bottom: 44,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
-                  ),
-                  child: Text(
-                    carName,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+              Stack(
+                children: [
+                  // Car Image
+                  ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16),
+                    ),
+                    child: Image.asset(
+                      widget.imagePath,
+                      height: 180,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                ),
-              ),
 
+                  // Car Name overlay
+                  Positioned(
+                    left: 16,
+                    right: 16,
+                    bottom: 44,
+                    child: Text(
+                      widget.carName,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
 
-              Positioned(
-                left: 16,
-                right: 16,
-                bottom: 12,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Left side: Like & Comment
-                    Row(
+                  // Like / Comment / Share icons
+                  Positioned(
+                    left: 16,
+                    right: 16,
+                    bottom: 12,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        // Left: like + comment
                         Row(
                           children: [
-                            Image.asset(
-                              'images/like.png',
-                              width: 33,
-                              height: 29,
-                              color: Colors.white,
+                            Row(
+                              children: [
+                                Image.asset(
+                                  'images/like.png',
+                                  width: 33,
+                                  height: 29,
+                                  color: Colors.white,
+                                ),
+                                const SizedBox(width: 4),
+                                const Text(
+                                  "5",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 4),
-                            const Text(
-                              "0",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                              ),
+                            const SizedBox(width: 16),
+                            Row(
+                              children: [
+                                Image.asset(
+                                  'images/comment.png',
+                                  width: 33,
+                                  height: 29,
+                                  color: Colors.white,
+                                ),
+                                const SizedBox(width: 4),
+                                const Text(
+                                  "1",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                        const SizedBox(width: 16),
-                        Row(
-                          children: [
-                            Image.asset(
-                              'images/comment.png',
-                              width: 33,
-                              height: 29,
-                              color: Colors.white,
-                            ),
-                            const SizedBox(width: 4),
-                            const Text(
-                              "1",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
+
+                        // ⭐ TOP SHARE BUTTON
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              activeShareButton = "top";
+                              showShareMenu = !showShareMenu;
+                            });
+                          },
+                          child: Image.asset(
+                            'images/share-2.png',
+                            width: 33,
+                            height: 29,
+                            color: Colors.white,
+                          ),
                         ),
                       ],
                     ),
+                  ),
 
-                    Image.asset(
-                      'images/share-2.png',
-                      width: 33,
-                      height: 29,
-                      color: Colors.white,
+                  // Edit + Delete buttons
+                  Positioned(
+                    top: 12,
+                    right: 12,
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.edit,
+                              size: 16,
+                              color: Colors.black,
+                            ),
+                            onPressed: () {},
+                            padding: const EdgeInsets.all(8),
+                            constraints: const BoxConstraints(),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.delete,
+                              size: 16,
+                              color: Colors.black,
+                            ),
+                            onPressed: () {},
+                            padding: const EdgeInsets.all(8),
+                            constraints: const BoxConstraints(),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
 
-              // Top right: Edit & Delete buttons with rounded background
-              Positioned(
-                top: 12,
-                right: 12,
+              // Stats section
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 13,
+                ),
                 child: Row(
                   children: [
-                    // Edit button
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(
-                          8,
-                        ), 
-                      ),
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.edit, // Material edit icon
-                          size: 16,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {
-                          // Edit action
-                        },
-                        padding: const EdgeInsets.all(8),
-                        constraints: const BoxConstraints(),
+                    Expanded(
+                      child: StatBox(
+                        iconPath: 'images/horsepower.png',
+                        label: 'Horsepower',
+                        value: widget.horsepower.toString(),
                       ),
                     ),
                     const SizedBox(width: 8),
-                    // Delete button
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(
-                          8,
-                        ), // Rounded background
-                      ),
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.delete, // Material delete icon
-                          size: 16,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {
-                          // Delete action
-                        },
-                        padding: const EdgeInsets.all(8),
-                        constraints: const BoxConstraints(),
+                    Expanded(
+                      child: StatBox(
+                        iconPath: 'images/timer.png',
+                        label: '0-60 mph',
+                        value: widget.zeroToSixty,
                       ),
                     ),
                   ],
                 ),
               ),
+
+              const SizedBox(height: 8),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: StatBox(
+                        iconPath: 'images/torque.png',
+                        label: 'Torque',
+                        value: widget.torque.toString(),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: StatBox(
+                        iconPath: 'images/top-speed.png',
+                        label: 'Top Speed',
+                        value: widget.topSpeed,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 16),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
+                child: Row(
+                  children: [
+                    // See Details Button
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => CarDetailPage(
+                                carName: widget.carName,
+                                mainImage: widget.imagePath,
+                                thumbnails: [
+                                  widget.imagePath,
+                                  'images/view1.png',
+                                  'images/view2.png',
+                                  'images/view3.png',
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF13131A),
+                          side: const BorderSide(color: Color(0xFF444444)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 18),
+                          elevation: 0,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                              "See Details",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                              ),
+                            ),
+                            const SizedBox(width: 6),
+                            Image.asset(
+                              'images/arrow-right.png',
+                              width: 12,
+                              height: 10,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(width: 8),
+
+                    // ⭐ BOTTOM SHARE BUTTON
+                    Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF13131A),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: const Color(0xFF444444)),
+                      ),
+                      child: IconButton(
+                        padding: EdgeInsets.zero,
+                        icon: Image.asset(
+                          'images/share.png',
+                          width: 20,
+                          height: 20,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            activeShareButton = "bottom";
+                            showShareMenu = !showShareMenu;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 16),
             ],
           ),
 
-          // First row of stats
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
-            child: Row(
-              children: [
-                Expanded(
-                  child: StatBox(
-                    iconPath: 'images/horsepower.png',
-                    label: 'Horsepower',
-                    value: horsepower.toString(),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: StatBox(
-                    iconPath: 'images/timer.png',
-                    label: '0-60 mph',
-                    value: zeroToSixty,
-                  ),
-                ),
-              ],
+          // ⭐ SHARE MENU POSITIONING LOGIC
+          if (showShareMenu)
+            Positioned(
+              right: 16,
+              bottom: activeShareButton == "top" ? 290 : 70,
+              child: buildShareMenu(),
             ),
-          ),
+        ],
+      ),
+    );
+  }
 
-          const SizedBox(height: 8),
+  // Popup UI
+  Widget buildShareMenu() {
+    return Container(
+      width: 180,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: const Color(0xFF171C29),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.white12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          shareItem(Icons.link, "Copy link"),
+          const SizedBox(height: 12),
+          shareItem(Icons.share, "Share on Twitter"),
+          const SizedBox(height: 12),
+          shareItem(Icons.facebook, "Share on Facebook"),
+        ],
+      ),
+    );
+  }
 
-          // Second row of stats
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: [
-                Expanded(
-                  child: StatBox(
-                    iconPath: 'images/torque.png',
-                    label: 'Torque',
-                    value: torque.toString(),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: StatBox(
-                    iconPath: 'images/top-speed.png',
-                    label: 'Top Speed',
-                    value: topSpeed,
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 16),
-
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            child: Row(
-              children: [
-                // See Details Button
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Navigate to CarDetailPage with some sample thumbnails
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => CarDetailPage(
-                            carName: carName,
-                            mainImage: imagePath,
-                            thumbnails: [
-                              imagePath, // main image
-                              'images/view1.png',
-                              'images/view2.png',
-                              'images/view3.png',
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF13131A),
-                      side: const BorderSide(
-                        color: Color(0xFF444444),
-                      ), // border
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          8,
-                        ), // rounded corners
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 18),
-                      elevation: 0,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          "See Details",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
-                          ),
-                        ),
-                        const SizedBox(width: 6),
-                        Image.asset(
-                          'images/arrow-right.png',
-                          width: 12,
-                          height: 10,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-
-                // Share Button
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: const Color(0xFF444444)),
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xFF13131A),
-                  ),
-                  child: IconButton(
-                    padding: EdgeInsets.zero,
-                    icon: Image.asset(
-                      'images/share.png', // your share icon
-                      width: 16,
-                      height: 16,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {},
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 16),
+  Widget shareItem(IconData icon, String label) {
+    return GestureDetector(
+      onTap: () {
+        setState(() => showShareMenu = false);
+      },
+      child: Row(
+        children: [
+          Icon(icon, size: 16, color: Colors.white),
+          const SizedBox(width: 10),
+          Text(label, style: const TextStyle(color: Colors.white)),
         ],
       ),
     );
   }
 }
 
-// Single stat box
+
+// STAT BOX
 class StatBox extends StatelessWidget {
   final String iconPath;
   final String label;
@@ -336,11 +396,11 @@ class StatBox extends StatelessWidget {
   final String? valueUnit;
 
   const StatBox({
+    super.key,
     required this.iconPath,
     required this.label,
     required this.value,
     this.valueUnit,
-    super.key,
   });
 
   @override
@@ -360,11 +420,12 @@ class StatBox extends StatelessWidget {
             children: [
               Text(
                 label,
-                style: const TextStyle(color: Color(0xFF4C98F1), fontSize: 12),
+                style:
+                    const TextStyle(color: Color(0xFF4C98F1), fontSize: 12),
               ),
               const SizedBox(height: 2),
               Text(
-                valueUnit != null ? '$value $valueUnit' : value,
+                valueUnit != null ? "$value $valueUnit" : value,
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,

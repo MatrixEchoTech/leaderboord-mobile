@@ -65,7 +65,7 @@ class SpecItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
       decoration: BoxDecoration(
         color: const Color(0xFF171C29),
         borderRadius: BorderRadius.circular(12),

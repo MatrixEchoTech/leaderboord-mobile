@@ -7,7 +7,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 class AddEventModal extends StatefulWidget {
   final VoidCallback? onSubmit; // just a callback, no form data
 
-  AddEventModal({super.key, this.onSubmit}); // removed const for hot reload
+  const AddEventModal({super.key, this.onSubmit}); // removed const for hot reload
 
   @override
   State<AddEventModal> createState() => _MakeChangeModalState();
@@ -84,7 +84,7 @@ class _MakeChangeModalState extends State<AddEventModal> {
     ),
   );
 
-  Overlay.of(context)!.insert(_calendarOverlay!);
+  Overlay.of(context).insert(_calendarOverlay!);
 }
 
   @override

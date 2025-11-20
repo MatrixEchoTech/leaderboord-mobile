@@ -3,6 +3,7 @@ import 'package:flutter_application_2/widgets/garage/car_journey.dart';
 import 'package:flutter_application_2/widgets/garage/car_specs.dart';
 import 'package:flutter_application_2/widgets/garage/comments_garage.dart';
 import 'package:flutter_application_2/widgets/modals/add_event_modal.dart';
+import 'package:flutter_application_2/widgets/modals/car_journey_modal.dart';
 import 'package:flutter_application_2/widgets/modals/make_change_modal.dart';
 import 'package:flutter_application_2/widgets/modals/technical_detail_modal.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -71,35 +72,45 @@ class _CarDetailPageState extends State<CarDetailPage> {
                     Positioned(
                       top: 12,
                       left: 12,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 8,
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF0A1330),
-                          borderRadius: BorderRadius.circular(50),
-                          border: Border.all(color: const Color(0xFF444444)),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image.asset(
-                              'images/refresh.png',
-                              width: 18,
-                              height: 18,
-                              color: Colors.white,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => const CarJourneyModal(),
+                              fullscreenDialog: true,
                             ),
-                            const SizedBox(width: 6),
-                            const Text(
-                              "See Car Journey",
-                              style: TextStyle(
+                          );
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF0A1330),
+                            borderRadius: BorderRadius.circular(50),
+                            border: Border.all(color: const Color(0xFF444444)),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image.asset(
+                                'images/refresh.png',
+                                width: 18,
+                                height: 18,
                                 color: Colors.white,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
                               ),
-                            ),
-                          ],
+                              const SizedBox(width: 6),
+                              const Text(
+                                "See Car Journey",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -436,7 +447,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
 
                 /// Add Event Button
                 ElevatedButton(
-                 onPressed: () {
+                  onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => AddEventModal(

@@ -51,7 +51,7 @@ class _CrossPlatformDropzoneState extends State<CrossPlatformDropzone> {
   Future<void> pickFileWeb() async {
     if (!kIsWeb) return;
     final ev = await controller.pickFiles(mime: ['image/*'], multiple: false);
-    if (ev == null || ev.isEmpty) return; // safety check
+    if (ev.isEmpty) return; // safety check
 
     final bytes = await controller.getFileData(ev.first);
     final name = await controller.getFilename(ev.first);
@@ -130,21 +130,25 @@ class _CrossPlatformDropzoneState extends State<CrossPlatformDropzone> {
                   child: fileBytes != null
                       ? Center(
                           child: Stack(
+                            clipBehavior:
+                                Clip.none, // allow overflow outside image
                             children: [
-                              // Image preview with fixed size
+                              // Image preview
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
                                 child: Image.memory(
                                   fileBytes!,
-                                  width: 120, // image width
-                                  height: 120, // image height
+                                  width: 100,
+                                  height: 100,
                                   fit: BoxFit.cover,
                                 ),
                               ),
-                              // Cross button on top-right of the image
+                              // Cross button overlapping image corner
                               Positioned(
-                                top: -8, // slightly outside image
-                                right: -8, // slightly outside image
+                                top:
+                                    -10, // negative to go slightly outside the image
+                                right:
+                                    -10, // negative to go slightly outside the image
                                 child: GestureDetector(
                                   onTap: () {
                                     setState(() {
@@ -157,11 +161,11 @@ class _CrossPlatformDropzoneState extends State<CrossPlatformDropzone> {
                                       color: Colors.red,
                                       shape: BoxShape.circle,
                                     ),
-                                    
+                                    padding: const EdgeInsets.all(4),
                                     child: const Icon(
                                       Icons.close,
                                       color: Colors.white,
-                                      size: 25,
+                                      size: 20,
                                     ),
                                   ),
                                 ),
@@ -172,7 +176,6 @@ class _CrossPlatformDropzoneState extends State<CrossPlatformDropzone> {
                       : Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            // Upload icon
                             Image.asset(
                               '/images/upload.png',
                               width: 36,
@@ -180,7 +183,7 @@ class _CrossPlatformDropzoneState extends State<CrossPlatformDropzone> {
                               fit: BoxFit.contain,
                             ),
                             const SizedBox(height: 6),
-                            // Texts
+
                             Text(
                               'Drag & drop',
                               style: GoogleFonts.inter(

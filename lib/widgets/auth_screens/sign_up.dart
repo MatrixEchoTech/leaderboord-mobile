@@ -24,6 +24,7 @@ class _SignInState extends State<SignUp> {
           Container(
             width: double.infinity,
             height: double.infinity,
+       
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('/images/auth-bg.png'),
@@ -39,10 +40,10 @@ class _SignInState extends State<SignUp> {
             decoration: const BoxDecoration(
               gradient: RadialGradient(
                 center: Alignment.center,
-                radius: 1.2, // increase/decrease for spreading the effect
+                radius: 1.2, 
                 colors: [
-                  Color.fromARGB(0, 0, 0, 0), // transparent center
-                  Color(0xFF0E0F15), // dark outer area
+                  Color.fromARGB(0, 0, 0, 0),
+                  Color(0xFF0E0F15),
                 ],
                 stops: [0.0, 1.0],
               ),
@@ -51,7 +52,7 @@ class _SignInState extends State<SignUp> {
           Center(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.only(top: 80, left: 14, right: 14),
+                padding: const EdgeInsets.only(top: 40, left: 14, right: 14 , bottom: 20),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -455,13 +456,13 @@ class _SignInState extends State<SignUp> {
                           icon: Image.asset('/images/facebook-auth.png'),
                           iconSize: 50,
                         ),
-                        const SizedBox(width: 16),
+                      
                         IconButton(
                           onPressed: () {},
                           icon: Image.asset('/images/apple.png'),
                           iconSize: 50,
                         ),
-                        const SizedBox(width: 16),
+                       
                         IconButton(
                           onPressed: () {},
                           icon: Image.asset('/images/google-auth.png'),
