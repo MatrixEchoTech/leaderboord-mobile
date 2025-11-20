@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/widgets/garage/addGarage/basic_information.dart';
+import 'package:flutter_application_2/widgets/profile/profile_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GarageProfileBox extends StatelessWidget {
@@ -21,7 +23,7 @@ class GarageProfileBox extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: const Color(0xFF171C29),
           borderRadius: BorderRadius.circular(20),
@@ -97,15 +99,29 @@ class GarageProfileBox extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: _imageButton("Add a Vehicle", "/images/add.png"),
+                  child: _imageButton(
+                    "Add a Vehicle",
+                    "images/add.png",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const BasicInformation(), 
+                        ),
+                      );
+                    },
+                  ),
                 ),
-                const SizedBox(width: 12),
 
-            
+                const SizedBox(width: 12),
                 Expanded(
                   child: _materialIconButton(
                     "Visibility (Public)",
                     Icons.public,
+                    onTap: () {
+                      // Navigate to Visibility settings
+                    },
                   ),
                 ),
               ],
@@ -116,20 +132,27 @@ class GarageProfileBox extends StatelessWidget {
             // ---------------- BUTTONS ROW 2 ----------------
             Row(
               children: [
-            
                 Expanded(
                   child: _materialIconButton(
                     "Edit Profile",
                     Icons.edit_square,
+                    onTap: () {
+                      // Navigate to ProfilePage
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const ProfilePage()),
+                      );
+                    },
                   ),
                 ),
                 const SizedBox(width: 12),
-
                 Expanded(
                   child: _imageButton(
                     "Share Garage",
-                    "/images/share.png",
+                    "images/share.png",
                     isBlue: true,
+                    onTap: () {
+                      // Navigate to Share Garage page
+                    },
                   ),
                 ),
               ],
@@ -140,12 +163,17 @@ class GarageProfileBox extends StatelessWidget {
     );
   }
 
-  // ---------------- BUTTON WITH IMAGE (original) ----------------
-  Widget _imageButton(String label, String iconPath, {bool isBlue = false}) {
+  // ---------------- BUTTON WITH IMAGE ----------------
+  Widget _imageButton(
+    String label,
+    String iconPath, {
+    bool isBlue = false,
+    VoidCallback? onTap,
+  }) {
     return SizedBox(
       height: 36,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onTap,
         style: ElevatedButton.styleFrom(
           backgroundColor: isBlue ? const Color(0xFF4C98F1) : Colors.white,
           foregroundColor: isBlue ? Colors.white : Colors.black,
@@ -180,12 +208,16 @@ class GarageProfileBox extends StatelessWidget {
     );
   }
 
-  // ---------------- BUTTON WITH MATERIAL ICON 
-  Widget _materialIconButton(String label, IconData icon) {
+  // ---------------- BUTTON WITH MATERIAL ICON ----------------
+  Widget _materialIconButton(
+    String label,
+    IconData icon, {
+    VoidCallback? onTap,
+  }) {
     return SizedBox(
       height: 36,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onTap,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
@@ -202,10 +234,7 @@ class GarageProfileBox extends StatelessWidget {
             Flexible(
               child: Text(
                 label,
-                style: GoogleFonts.inter(
-                  fontSize: 14,
-                  color: Colors.black,
-                ),
+                style: GoogleFonts.inter(fontSize: 14, color: Colors.black),
                 overflow: TextOverflow.ellipsis,
               ),
             ),

@@ -6,12 +6,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(
-        title: Image.asset(
-          "/images/newLogo.png",   // your image
-          height:30,
-        ),
-      ),
+    
       body: const Center(
         child: Text(
           "Settings Page Content Here",

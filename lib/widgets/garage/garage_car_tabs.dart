@@ -23,7 +23,7 @@ class GarageTabsPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      ImageIcon(AssetImage("images/garage.png")),
+                      ImageIcon(AssetImage("images/garage-car.png")),
                       SizedBox(width: 8),
                       Text("Currently Owned (4)"),
                     ],
@@ -36,6 +36,7 @@ class GarageTabsPage extends StatelessWidget {
                       ImageIcon(AssetImage("images/subscription.png")),
                       SizedBox(width: 8),
                       Text("Previously Owned(1)"),
+                      
                     ],
                   ),
                 ),
@@ -68,7 +69,7 @@ class CurrentlyOwnedTabContent extends StatelessWidget {
           topSpeed: "23",
         ),
         GarageCarCard(
-          imagePath: "images/car1.png",
+          imagePath: "images/view3.png",
           carName: "Nissan GT-R R35 – The Beast",
           horsepower: 23,
           zeroToSixty: "4",
@@ -89,7 +90,7 @@ class PreviouslyOwnedTabContent extends StatelessWidget {
       padding: const EdgeInsets.only(top: 15, bottom: 35),
       children: [
         GarageCarCard(
-          imagePath: "images/car1.png",
+          imagePath: "images/view2.png",
           carName: "Nissan GT-R R35 – The Beast",
           horsepower: 23,
           zeroToSixty: "4",

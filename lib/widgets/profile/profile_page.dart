@@ -19,7 +19,7 @@ class _ProfilePageState extends State<ProfilePage> {
   String? selectedCountry;
   String? selectedState;
   String? selectedCity;
-bool reminderEnabled = true;
+  bool reminderEnabled = true;
   // Sample data
   final List<String> countries = List.generate(
     20,
@@ -41,6 +41,7 @@ bool reminderEnabled = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF171C29),
       appBar: customAppBar(
         onLogoTap: () =>
             Navigator.of(context).popUntil((route) => route.isFirst),
@@ -50,6 +51,7 @@ bool reminderEnabled = true;
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -534,58 +536,57 @@ bool reminderEnabled = true;
             ),
 
             const SizedBox(height: 16),
- Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // LEFT SIDE (Texts)
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Recieve Email Notification ",
-                            style: GoogleFonts.lato(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                          const SizedBox(height: 3),
-                          Text(
-                            "You will get email for every update.",
-                            style: GoogleFonts.lato(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFFA3A3A3),
-                            ),
-                          ),
-                        ],
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // LEFT SIDE (Texts)
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Recieve Email Notification ",
+                        style: GoogleFonts.lato(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-
-                    Transform.scale(
-                      scale: 0.8,
-                      child: Switch(
-                        value: reminderEnabled,
-                        onChanged: (v) => setState(() => reminderEnabled = v),
-                        activeThumbColor: Colors.white, // thumb color when ON
-                        inactiveThumbColor:
-                            Colors.white, // thumb color when OFF
-                        trackColor: WidgetStateProperty.resolveWith<Color>((
-                          states,
-                        ) {
-                          if (states.contains(WidgetState.selected)) {
-                            return Colors.blueAccent; // track color when ON
-                          }
-                          return Color(0xFF374151); // track color when OFF
-                        }),
-                        overlayColor: WidgetStateProperty.all(
-                          Colors.transparent,
-                        ), // removes ripple/overlay
+                      const SizedBox(height: 3),
+                      Text(
+                        "You will get email for every update.",
+                        style: GoogleFonts.lato(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFFA3A3A3),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
+
+                Transform.scale(
+                  scale: 0.8,
+                  child: Switch(
+                    value: reminderEnabled,
+                    onChanged: (v) => setState(() => reminderEnabled = v),
+                    activeThumbColor: Colors.white, // thumb color when ON
+                    inactiveThumbColor: Colors.white, // thumb color when OFF
+                    trackColor: WidgetStateProperty.resolveWith<Color>((
+                      states,
+                    ) {
+                      if (states.contains(WidgetState.selected)) {
+                        return Colors.blueAccent; // track color when ON
+                      }
+                      return Color(0xFF374151); // track color when OFF
+                    }),
+                    overlayColor: WidgetStateProperty.all(
+                      Colors.transparent,
+                    ), // removes ripple/overlay
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 30),
             // Buttons
             Row(
